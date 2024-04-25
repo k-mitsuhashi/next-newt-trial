@@ -31,6 +31,8 @@ jobs:
     defaults:
       run:
         working-directory: ./src
+    environment:
+      name: build
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -80,6 +82,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          NEWT_SPACE_UID: ${{ secrets.NEWT_SPACE_UID }}
+          NEWT_CDN_API_TOKEN: ${{ secrets.NEWT_CDN_API_TOKEN }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
