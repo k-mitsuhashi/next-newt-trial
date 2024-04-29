@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { getArticles } from '@/lib/newt'
-import styles from '@/app/page.module.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -11,11 +10,11 @@ export const metadata: Metadata = {
 export default async function Home() {
   const articles = await getArticles()
   return (
-    <main className={styles.main}>
+    <main className='md:container md:mx-auto mt-4'>
       <ul>
         {articles.map((article) => {
           return (
-            <li key={article._id}>
+            <li key={article._id} className='font-medium text-blue-600 dark:text-blue-500 hover:underline mb-2'>
               <Link href={`articles/${article.slug}`}>{article.title}</Link>
             </li>
           )

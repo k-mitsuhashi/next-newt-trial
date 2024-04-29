@@ -1,7 +1,7 @@
 import { getArticles, getArticleBySlug } from '@/lib/newt'
-import styles from '@/app/page.module.css'
 import type { Metadata } from 'next'
 import type { Article } from '@/types/article'
+import "./page.css";
 
 type Props = {
   params: {
@@ -33,8 +33,9 @@ export default async function Article({ params }: Props) {
   if (!article) return
 
   return (
-    <main className={styles.main}>
+    <main className='md:container md:mx-auto'>
       <h1>{article.title}</h1>
+      <hr></hr>
       <div dangerouslySetInnerHTML={{ __html: article.body }} />
     </main>
   )
